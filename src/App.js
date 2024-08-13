@@ -22,7 +22,26 @@ function App() {
 }
 
 const DisplayNested = ({ nestedObjected }) => {
-  // KODUNUZ BURAYA GELECEK
+  return <div>{renderNested(nestedObjected)}</div>
+}
+
+const renderNested = (obj) => {
+  return Object.entries(obj).map(([key, value]) => {
+    if (typeof value === 'object') {
+      return (
+        <div key={key}>
+          <strong>{key}:</strong>
+          <div>{renderNested(value)}</div>
+        </div>
+      )
+    } else {
+      return (
+        <div key={key}>
+          <strong>{key}:</strong> {value}
+        </div>
+      )
+    }
+  })
 }
 
 export default App
